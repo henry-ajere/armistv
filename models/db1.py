@@ -1,5 +1,11 @@
 # coding: utf8
-from plugin_lazy_options_widget import lazy_options_widget
+if False:
+    from gluon import *
+    from gluon.tools import request,response, session, cache, Auth, DAL
+
+    db = DAL('sqlite://storage.sqlite',pool_size=1,check_reserved=['all'])
+    auth=Auth(db)
+#from plugin_lazy_options_widget import lazy_options_widget
 from plugin_suggest_widget import suggest_widget
 from cascadedrop import CascadingSelect
 from gluon.contrib.populate import populate
@@ -151,7 +157,7 @@ db.define_table('registered_course',
                 Field('status', requires=IS_IN_SET(STATUS_SET)),
                 Field('scores', 'float', default=0.0),
                 Field('grade', readable=True, compute=lambda r: calcgradeII(r['scores'])[0] ),
-                #Field.Virtual('grade', lambda row: calcgradeII(row)[0]), 
+                #Field.Virtual('grade', lambda row: calcgradeII(row)[0]),
                 Field('wp', 'float',compute=lambda r: calcgradeII(r['scores'])[1]),
                 #Field.Virtual('wp', lambda row: calcgradeII(row)[1]),
                 Field('Wgp', 'float', compute=lambda r: r['credit_unit']*r['wp']),

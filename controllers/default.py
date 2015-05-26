@@ -10,7 +10,8 @@
 #########################################################################
 if False:
     from gluon import *
-    from gluon.tools import request,response, session, Auth, DAL
+    from gluon.tools import request,response, session, cache, Auth, DAL
+
     db = DAL('sqlite://storage.sqlite',pool_size=1,check_reserved=['all'])
     auth=Auth(db)
 
